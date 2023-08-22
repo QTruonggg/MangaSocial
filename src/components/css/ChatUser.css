@@ -1,0 +1,73 @@
+.user{
+    border: solid 3px #F48611;
+    /* padding-bottom: 20px; */
+}
+
+.title-user{
+    height: 42px;
+}
+
+.title-user button{
+    height: 100%;
+    background: none;
+    border: solid 1px #F48611;
+    font-size: 20px;
+    border-bottom: solid 3px #F48611 ;
+}
+
+.title-user button:focus{
+    background: #F48611;
+    color: #fff;
+}
+
+.title-user button:hover{
+    background: #F48611;
+    color: #fff;
+}
+
+.list-user{
+    display: flex;
+    padding: 20px 20px 0;
+    align-items: center;
+}
+
+.send-comment{
+    position: relative;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.send-comment>input{
+    width: 100%;
+    position: relative;
+    border: none;
+    border-top: solid #F48611;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.send-comment>input:focus-visible{
+    outline: none;
+}
+
+.send-comment>button{
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
+    background: none;
+    border: none;
+}
+
+
+.list-read, .list-online, .list-users{
+    padding-bottom: 20px;
+}
+
+.user-onl{
+    display: flex;
+    padding-left: 20px;
+    width: 85%;
+    justify-content: space-between;
+    align-items: center;
+}

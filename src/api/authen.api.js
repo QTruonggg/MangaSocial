@@ -1,7 +1,7 @@
 import axiosInstance from '../utils/axiosInstance';
 
-const pathLogin = "User/authenticate";
-const pathRegister = "User/register";
+const pathLogin = "login";
+const pathRegister = "register";
 
 export const login = data => {
     return axiosInstance(pathLogin, "POST", data)

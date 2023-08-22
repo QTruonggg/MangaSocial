@@ -1,0 +1,70 @@
+.title{
+font-size: 40px;
+font-weight: 700;
+line-height: 49px;
+letter-spacing: 0em;
+color: #F48611;
+}
+
+.titlee{
+font-size: 24px;
+font-weight: 600;
+line-height: 29px;
+letter-spacing: 0em;
+}
+
+.label-title{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: #F48611;    
+}
+
+.inp{
+    width: 100%;
+    margin: 8px 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    outline: none;
+}
+
+.btn-signup{
+    width: 356px;
+    height: 64px;
+    border-radius: 68px;
+    background: #F48611;
+    box-shadow: 0px 5px 4px 0px #F4861180;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: #fff;
+}
+
+.a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: #F48611;
+}
+
+.remember{
+    display: flex;
+    justify-content: space-between;
+}
+.fff{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    color: #000000B2;
+}
