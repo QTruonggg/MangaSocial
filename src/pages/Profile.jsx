@@ -79,8 +79,44 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className="stories-read-list">
-                            
+                            <img src={product} alt="" />
+                            <div className="describe">
+                                <p>Naruto Episode 1</p>
+                                <span>"Naruto" is an iconic manga and anime series that has left a lasting impact on its fans. 
+                                    With its compelling story of perseverance, friendship, and self-discovery, 
+                                    it takes readers on a thrilling journey filled with memorable characters, epic battles, 
+                                    and powerful life lessons. A true classic in the world of anime.
+                                </span>
+                                <div className="timed-read">
+                                    1m
+                                </div>
+                            </div>
+                            <div className="describe-btn">
+                                <button><img src={tim} alt="" /></button>
+                                <button><img src={chat} alt="" /></button>
+                                <button><img src={arow} alt="" /></button>
+                            </div>
                         </div>
+                        <div className="stories-read-list">
+                            <img src={product} alt="" />
+                            <div className="describe">
+                                <p>Naruto Episode 1</p>
+                                <span>"Naruto" is an iconic manga and anime series that has left a lasting impact on its fans. 
+                                    With its compelling story of perseverance, friendship, and self-discovery, 
+                                    it takes readers on a thrilling journey filled with memorable characters, epic battles, 
+                                    and powerful life lessons. A true classic in the world of anime.
+                                </span>
+                                <div className="timed-read">
+                                    1m
+                                </div>
+                            </div>
+                            <div className="describe-btn">
+                                <button><img src={tim} alt="" /></button>
+                                <button><img src={chat} alt="" /></button>
+                                <button><img src={arow} alt="" /></button>
+                            </div>
+                        </div>
+                        
                         
                     </div>
                 </div>
