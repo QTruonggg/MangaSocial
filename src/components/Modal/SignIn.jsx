@@ -1,6 +1,13 @@
 import { Checkbox } from "antd";
+import { useState } from "react";
+import logo from '../../img/logo.png';
+
 
 const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
   return (
     <>
       <section className="vh-100 bg-image">
@@ -10,17 +17,21 @@ const SignIn = () => {
               <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div className="card" style={{ borderRadius: "15px" }}>
                   <div className="card-body p-5">
-                    <h2 className="text-center mb-2 title">MangaSocial</h2>
+                    <a href="/home" className='title'><img src={logo} alt=""/></a>
                     <p className="text-center titlee mb-5">Welcome Back!</p>
                     <form>
                         <div className="form-outline mb-4">
                             <label className="label-title">Email</label>
-                            <input type="email" name="email" className="inp" />
+                            <input type="email" name="email" className="inp" 
+                            value={email}
+                            onChange={event => setEmail(event.target.value)}/>
                         </div>
 
                         <div className="form-outline ">
                             <label className="label-title">Password</label>
-                            <input type="password" name="password" className="inp" />
+                            <input type="password" name="password" className="inp" 
+                            value={password}
+                            onChange={event => setPassword(event.target.value)}/>
                         </div>
 
                         <div className="remember mb-5 ">

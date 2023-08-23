@@ -1,0 +1,152 @@
+.banner-pro{
+    width: 100%;
+}
+
+.banner-pro>img{
+    width: 100%;
+}
+
+.ava-pro{
+    display: grid;
+    justify-items: center;
+    position: absolute;
+    top: 50%;
+}
+
+.ava-pro>img{
+    width: 100%;
+}
+
+.ava-pro button{
+    border: none;
+    background: none;
+    border-radius: 50%;
+    padding: 0;
+    margin: 12px 25px;
+}
+
+.profile-information{
+    padding: 52px 48px;
+}
+
+.favorite-read{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 40px;
+}
+
+.favorite, .read{
+    box-shadow: 0px 4px 10px 0px #00000040;
+    width: 25%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.favorite>p, .read>p{
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 4px;
+    text-align: center;
+}
+
+.favorite-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 4px 24px 24px;
+}
+
+.favorite-list button{
+    margin: 8px 8px;
+    padding: 8px 12px;
+    border-radius: 37px;
+    border: none;
+    cursor: default;
+}
+
+.read-list{
+    padding: 8px 20px 20px;
+}
+
+.read-list button{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #F6D365 0%, #FDA185 100%);
+    padding: 2px 12px;
+    border-radius: 71px;
+    border: none;    
+    margin-bottom: 8px;
+}
+
+.read-list button>p{
+    margin: 0;
+}
+
+.stories-read{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.stories-read-list{
+    width: 45%;
+    box-shadow: 0px 4px 10px 0px #00000040;
+    border-radius: 15px;
+    display: flex;
+    position: relative;
+}
+
+.stories-read-list>img{
+    width: 45%;
+    border-radius: 15px;
+}
+
+.describe{
+    width: 55%;
+    margin: 28px;
+    position: relative;
+}
+
+.describe>p{
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-bottom: 20px;
+}
+
+.describe>span{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.describe-btn{
+    width: 60%;
+    height: 67px;
+    border-radius: 0px 0px 15px 0px;
+    background: #D9D9D9;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.timed-read{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+}
+
+.describe-btn>button{
+    padding: 0;
+    border: none;
+    background: none;
+}

@@ -1,19 +1,50 @@
 import { useState } from 'react';
 import './SignUp.css';
 import { register } from '../../api/authen.api';
+import logo from '../../img/logo.png';
 
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const isEmailValid = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
 
   const handleSignUp = () => {
+    setNameError(false);
+    setEmailError(false);
+    setPasswordError(false);
+    if (!name.trim()) {
+      setNameError(true);
+      return;
+    }
+  
+    if (!email.trim() || !isEmailValid(email)) {
+      setEmailError(true);
+      return;
+    }
+  
+    if (!password.trim()) {
+      setPasswordError(true);
+      return;
+    }
+  
+    if (password.length < 6) {
+      setPasswordError(true);
+      return;
+    }
+
     const userData = {
       name: name,
       email: email,
       password: password,
     };
-    
+
     console.log(userData);
 
     register(userData)
@@ -36,9 +67,7 @@ const SignUp = () => {
               <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div className="card" style={{borderRadius:'15px'}}>
                   <div className="card-body p-5">
-                    <h2 className="text-center mb-2 title">
-                      MangaSocial
-                    </h2>
+                    <a href="/home" className='title'><img src={logo} alt="" /></a>
                     <p className='text-center titlee mb-5'>
                       Welcome Back!
                     </p>
@@ -51,8 +80,11 @@ const SignUp = () => {
                           type="text"
                           className="inp"
                           value={name}
-                          onChange={event => setName(event.target.value)}
+                          onChange={event => {setName(event.target.value);
+                            setNameError(false);}
+                          }
                         />
+                         {nameError && <div className="error">Name is required</div>}
                       </div>
 
                       <div className="form-outline mb-4">
@@ -63,8 +95,12 @@ const SignUp = () => {
                           type="email"
                           className="inp"
                           value={email}
-                          onChange={event => setEmail(event.target.value)}
+                          onChange={event => {
+                            setEmail(event.target.value);
+                            setEmailError(false);
+                          }}
                         />
+                        {emailError && <div className="error">Email is required</div>}
                       </div>
 
                       <div className="form-outline mb-4">
@@ -75,8 +111,14 @@ const SignUp = () => {
                           type="password"
                           className="inp"
                           value={password}
-                          onChange={event => setPassword(event.target.value)}
+                          onChange={(event) => {
+                            setPassword(event.target.value);
+                            setPasswordError(false); 
+                          }}
                         />
+                          {passwordError && (
+                            <div className="error">Password is required (minimum 6 characters)</div>
+                          )}
                       </div>
 
                       <div className="d-flex justify-content-center">
