@@ -1,11 +1,29 @@
 import { Checkbox } from "antd";
 import { useState } from "react";
+import { login } from '../../api/authen.api';
 import logo from '../../img/logo.png';
 
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSignIn = () => {
+    const userData = {
+      email: email,
+      password: password,
+    };
+
+    console.log(userData);
+
+    login(userData)
+    .then(response => {
+      console.log('Login successful:', response.data);
+    })
+    .catch(error => {
+      console.error('Login failed:', error);
+    });
+  }
 
 
   return (
@@ -40,7 +58,7 @@ const SignIn = () => {
                         </div> 
 
                         <div className="d-flex justify-content-center pt-5">
-                            <button type="button" className="btn-signup">
+                            <button type="button" className="btn-signup" onClick={handleSignIn}>
                             Sign In
                             </button>
                         </div>
