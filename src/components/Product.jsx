@@ -16,7 +16,7 @@ const Product = () => {
                             <h6>Nami Sano</h6>
                         </div>
                         <div>
-                            <i class="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
+                            <i className="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ const Product = () => {
                             <h6>Nami Sano</h6>
                         </div>
                         <div>
-                            <i class="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
+                            <i className="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ const Product = () => {
                             <h6>Nami Sano</h6>
                         </div>
                         <div>
-                            <i class="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
+                            <i className="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
                         </div>
                     </div>
                 </div>

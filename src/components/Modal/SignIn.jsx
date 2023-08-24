@@ -2,9 +2,14 @@ import { Checkbox } from "antd";
 import { useState } from "react";
 import { login } from '../../api/authen.api';
 import logo from '../../img/logo.png';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,20 +19,38 @@ const SignIn = () => {
       password: password,
     };
 
+    setIsLoading(true);
     console.log(userData);
 
     login(userData)
     .then(response => {
-      console.log('Login successful:', response.data);
+      if (response.data.ketqua !== undefined && response.data.ketqua === "Email hoặc mật khẩu không đúng.") {
+        toast.error(response.data.ketqua);
+      } else {
+        console.log('Login successful:', response.data);
+        toast.success('Login successful');
+        setTimeout(() => {
+          navigate('/home');
+        }, 2500);
+      }
     })
     .catch(error => {
       console.error('Login failed:', error);
+      toast.error('Login failed');
+    })
+    .finally(() => {
+      setIsLoading(false);
     });
   }
 
 
   return (
     <>
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
       <section className="vh-100 bg-image">
         <div className="mask d-flex align-items-center h-100">
           <div className="container h-100">
@@ -80,6 +103,7 @@ const SignIn = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </>
   );
 };
