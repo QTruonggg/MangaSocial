@@ -24,7 +24,7 @@ const ListChatUser = () => {
                 // console.log(response.data);
             })
             .catch(error => {
-                console.log("lỗi");
+                console.log("lỗi list onl");
                 console.error('Error fetching online users:', error);
             });
     }, []);
@@ -32,11 +32,12 @@ const ListChatUser = () => {
     useEffect(() => {
         axiosInstance('api/last_200_comment')
             .then(response => {
-                console.log("call api");
+                // console.log("call api comment");
                 setChatUsers(response.data); 
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error => {
+                console.log("lỗi list cmt");
                 console.error('Error fetching comments:', error);
             });
     }, []);

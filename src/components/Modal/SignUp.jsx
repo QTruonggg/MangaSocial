@@ -43,7 +43,7 @@ const SignUp = () => {
     }
 
     const userData = {
-      name: name,
+      user_name: name,
       email: email,
       password: password,
     };
