@@ -2,8 +2,11 @@ import { useState } from 'react';
 import './SignUp.css';
 import { register } from '../../api/authen.api';
 import logo from '../../img/logo.png';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,24 +43,40 @@ const SignUp = () => {
     }
 
     const userData = {
-      name: name,
+      user_name: name,
       email: email,
       password: password,
     };
 
+
+    setIsLoading(true);
     console.log(userData);
+    
 
     register(userData)
       .then(response => {
         console.log('Sign up successful:', response.data);
+        if (response.data.message === "Account or email already exists") {
+          toast.error('Email already exists. Please use a different email.');
+        } else {
+          toast.success('Sign Up Success! Please check your email and confirm.');
+        }
       })
       .catch(error => {
         console.error('Sign up failed:', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   return (
     <>
+    {isLoading && (
+      <div className="loading-overlay">
+        <div className="loading-spinner"></div>
+      </div>
+    )}
       <section
         className="vh-100 bg-image"
        >
@@ -141,6 +160,7 @@ const SignUp = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </>
   );
 };

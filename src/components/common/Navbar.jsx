@@ -6,6 +6,8 @@ const Navbar = () => {
     const [searchVisible, setSearchVisible] = useState(false);
     const [activeLink, setActiveLink] = useState('');
 
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+
     const toggleSearch = () => {
         setSearchVisible(!searchVisible);
     };
@@ -14,10 +16,22 @@ const Navbar = () => {
         setActiveLink(link);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        setUserLoggedIn(false);
+    };
+
     useEffect(() => {
         const savedActiveLink = localStorage.getItem('activeLink');
         if (savedActiveLink) {
             setActiveLink(savedActiveLink);
+        }
+    
+        const savedUser = localStorage.getItem('user');
+        if (savedUser) {
+            setUserLoggedIn(true);
+        } else {
+            setUserLoggedIn(false);
         }
     }, []);
 
@@ -46,8 +60,14 @@ const Navbar = () => {
                     <li ><a href="/home" className={activeLink === 'home' ? 'active' : ''} onClick={() => handleLinkClick('home')}>Home</a></li>
                     <li><a href="/profile" className={activeLink === 'profile' ? 'active' : ''} onClick={() => handleLinkClick('profile')}>Profile</a></li>
                     
-                    <li><a href="/signin">Sign In</a></li>
-                    <li><a href="signup">Sign Up</a></li>
+                    {userLoggedIn ? (
+                        <li><a href="/signin" onClick={handleLogout}>Logout</a></li>
+                    ) : (
+                        <>
+                        <li><a href="/signin">Sign In</a></li>
+                        <li><a href="signup">Sign Up</a></li>
+                        </>
+                    )}
                 </ul>
             </div>
         </div>

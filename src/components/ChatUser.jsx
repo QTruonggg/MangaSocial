@@ -2,15 +2,46 @@ import './css/ChatUser.css'
 import ava from '../img/ava.png'
 import send from '../img/send.png'
 import onl from '../img/onl.png'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axiosInstance from '../utils/axiosInstance';
 
 const ListChatUser = () => {
 
     const [activeTab, setActiveTab] = useState(''); 
+    const [onlineUsers, setOnlineUsers] = useState([]);
+    const [chatUsers, setChatUsers] = useState([]);
+
     
     const handleTabClick = (tabName) => {
         setActiveTab(tabName);
     };
+
+    useEffect(() => {
+        axiosInstance('get/api/list_online')
+            .then(response => {
+                // console.log("call api");
+                setOnlineUsers(response.data); 
+                // console.log(response.data);
+            })
+            .catch(error => {
+                console.log("lỗi list onl");
+                console.error('Error fetching online users:', error);
+            });
+    }, []);
+
+    useEffect(() => {
+        axiosInstance('api/last_200_comment')
+            .then(response => {
+                // console.log("call api comment");
+                setChatUsers(response.data); 
+                // console.log(response.data);
+            })
+            .catch(error => {
+                console.log("lỗi list cmt");
+                console.error('Error fetching comments:', error);
+            });
+    }, []);
+    
 
 
     return ( 
@@ -23,35 +54,19 @@ const ListChatUser = () => {
             </div>
 
             <div className='list-chat' style={{ display: activeTab === 'chat' ? 'block' : 'none' }}>
-                <div className='list-user'>
-                    <div style={{width:'15%'}}>
-                        <img src={ava} alt=""  style={{width:'100%'}}/>
-                    </div>
-                    <div style={{display:'grid', paddingLeft:'20px', width:'85%'}}>
-                        <b>Wade Warren</b>
-                        <p style={{margin:'0'}}>It has a unique art style with exaggerated expressions and action sequences.</p>
-                    </div>
-                </div>
 
-                <div className='list-user'>
-                    <div style={{width:'15%'}}>
-                        <img src={ava} alt=""  style={{width:'100%'}}/>
+                {chatUsers.map(comment => (
+                    <div className='list-user' key={comment.id_comment}>
+                        <div style={{width:'15%'}}>
+                            <img src={ava} alt=""  style={{width:'100%'}}/>
+                        </div>
+                        <div style={{display:'grid', paddingLeft:'20px', width:'85%'}}>
+                            <b>{comment.id_user}</b>
+                            <p style={{margin:'0'}}>{comment.noidung}</p>
+                        </div>
                     </div>
-                    <div style={{display:'grid', paddingLeft:'20px', width:'85%'}}>
-                        <b>Wade Warren</b>
-                        <p style={{margin:'0'}}>It has a unique art style with exaggerated expressions and action sequences.</p>
-                    </div>
-                </div>
+                ))}
 
-                <div className='list-user'>
-                    <div style={{width:'15%'}}>
-                        <img src={ava} alt=""  style={{width:'100%'}}/>
-                    </div>
-                    <div style={{display:'grid', paddingLeft:'20px', width:'85%'}}>
-                        <b>Wade Warren</b>
-                        <p style={{margin:'0'}}>It has a unique art style with exaggerated expressions and action sequences.</p>
-                    </div>
-                </div>
 
                 <form className='send-comment'>
                     <input type="text" placeholder='Leave a comment...' />
@@ -84,26 +99,19 @@ const ListChatUser = () => {
             </div>
 
             <div className='list-online' style={{ display: activeTab === 'online' ? 'block' : 'none' }}>
-                <div className='list-user'>
-                    <div style={{width:'15%'}}>
-                        <img src={ava} alt=""  style={{width:'100%'}}/>
-                    </div>
-                    <div className='user-onl'>
-                        <b>Wade Warren</b>
-                        <img src={onl} alt="" />
-                    </div>
-                </div>
-                <div className='list-user'>
-                    <div style={{width:'15%'}}>
-                        <img src={ava} alt=""  style={{width:'100%'}}/>
-                    </div>
-                    <div className='user-onl'>
-                        <b>Brooklyn Simmons</b>
-                        <img src={onl} alt="" />
-                    </div>
-                </div>
 
-                
+                {onlineUsers.map(user => (
+                    <div className='list-user' key={user.id_user}>
+                        <div style={{width:'15%'}}>
+                            <img src={user.link_avatar} alt={user.user_name}  style={{width:'100%'}}/>
+                        </div>
+                        <div className='user-onl'>
+                            <b>{user.user_name}</b>
+                            <img src={onl} alt="" />
+                        </div>
+                    </div>
+                ))}
+
             </div>
 
             <div className='list-users' style={{ display: activeTab === 'newUsers' ? 'block' : 'none' }}>

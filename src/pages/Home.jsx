@@ -2,6 +2,7 @@ import ByGenres from '../components/ByGenres';
 import ChatUser from '../components/ChatUser';
 import Product from '../components/Product';
 import Navbar from '../components/common/Navbar'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
     return ( 
@@ -18,6 +19,7 @@ const Home = () => {
                     <ChatUser/>
                 </div>
             </div>
+            <ToastContainer />
         </div>
      );
 }

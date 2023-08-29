@@ -1,47 +1,35 @@
-import { Checkbox } from "antd";
 import { useState } from "react";
 import { login } from '../../api/authen.api';
 import logo from '../../img/logo.png';
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import axiosInstance from "../../utils/axiosInstance";
 
 
 
-const SignIn = () => {
-  const navigate = useNavigate();
+const ForgotPw = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const saveUserToLocalStorage = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-  };
 
-  const handleSignIn = () => {
+  const handleForgotPw = () => {
     const userData = {
       email: email,
-      password: password,
     };
 
     setIsLoading(true);
     console.log(userData);
 
     login(userData)
+    
+    axiosInstance('resetpass', 'POST', userData)
     .then(response => {
-      if (response.data.ketqua !== undefined && response.data.ketqua === "Email hoặc mật khẩu không đúng.") {
-        toast.error(response.data.ketqua);
-      } else {
-        console.log('Login successful:', response.data);
-        toast.success('Login successful');
-        saveUserToLocalStorage(response.data.user);
-        setTimeout(() => {
-          navigate('/home');
-        }, 2500);
-      }
+      console.log('Reset password request sent successfully:', response.data);
+      toast.success('Password reset successfully!');
+      toast.success('Please check your email for the new password!');
     })
     .catch(error => {
-      console.error('Login failed:', error);
-      toast.error('Login failed');
+      console.error('Password reset request failed:', error);
+      toast.error('Password reset request failed');
     })
     .finally(() => {
       setIsLoading(false);
@@ -73,21 +61,14 @@ const SignIn = () => {
                             onChange={event => setEmail(event.target.value)}/>
                         </div>
 
-                        <div className="form-outline ">
-                            <label className="label-title">Password</label>
-                            <input type="password" name="password" className="inp" 
-                            value={password}
-                            onChange={event => setPassword(event.target.value)}/>
-                        </div>
 
                         <div className="remember mb-5 ">
-                            <Checkbox>Remember me</Checkbox>
-                            <a href="/forgotpassword" className="fff"> Forgot your password? </a>
+                            <a href="/signin" className="fff"> SignIn? </a>
                         </div> 
 
                         <div className="d-flex justify-content-center pt-5">
-                            <button type="button" className="btn-signup" onClick={handleSignIn}>
-                            Sign In
+                            <button type="button" className="btn-signup" onClick={handleForgotPw}>
+                            Send PassWord
                             </button>
                         </div>
 
@@ -113,4 +94,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ForgotPw;
