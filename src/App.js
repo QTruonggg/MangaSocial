@@ -5,6 +5,7 @@ import Profile from './pages/Profile';
 import SignUp from './components/Modal/SignUp';
 import SignIn from './components/Modal/SignIn';
 import ForgotPw from './components/Modal/Forgotpw';
+import DetailManga from './pages/DetailManga';
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
 
         <Route path='/home' element={<Home/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/detailManga' element={<DetailManga/>}/>
+
+
         
       </Routes>
     </BrowserRouter>
