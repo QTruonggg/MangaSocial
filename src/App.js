@@ -5,6 +5,8 @@ import Profile from './pages/Profile';
 import SignUp from './components/Modal/SignUp';
 import SignIn from './components/Modal/SignIn';
 import ForgotPw from './components/Modal/Forgotpw';
+import DetailManga from './pages/DetailManga';
+import ReadManga from './pages/ReadManga';
 
 
 function App() {
@@ -19,7 +21,8 @@ function App() {
 
         <Route path='/home' element={<Home/>}/>
         <Route path='/profile' element={<Profile/>}/>
-        
+        <Route path='/manga/:slug' element={<DetailManga/>}/>
+        <Route path='/manga/:slug/:id' element={<ReadManga/>}/>
       </Routes>
     </BrowserRouter>
 
