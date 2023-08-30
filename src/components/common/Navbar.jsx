@@ -40,7 +40,7 @@ const Navbar = () => {
     }, [activeLink]);
 
     return (
-        <div className="nav-bar ">
+        <div className="nav-bar">
             <div className="logo">
                 <a href="/home"><img src={logo} alt="" /></a>
             </div>
