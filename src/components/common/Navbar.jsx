@@ -58,14 +58,16 @@ const Navbar = () => {
                 </button>
                 <ul className="navbar-nav list">
                     <li ><a href="/home" className={activeLink === 'home' ? 'active' : ''} onClick={() => handleLinkClick('home')}>Home</a></li>
-                    <li><a href="/profile" className={activeLink === 'profile' ? 'active' : ''} onClick={() => handleLinkClick('profile')}>Profile</a></li>
                     
                     {userLoggedIn ? (
+                        <>
+                        <li><a href="/profile" className={activeLink === 'profile' ? 'active' : ''} onClick={() => handleLinkClick('profile')}>Profile</a></li>
                         <li><a href="/signin" onClick={handleLogout}>Logout</a></li>
+                        </>
                     ) : (
                         <>
-                        <li><a href="/signin">Sign In</a></li>
                         <li><a href="signup">Sign Up</a></li>
+                        <li><a href="/signin">Sign In</a></li>
                         </>
                     )}
                 </ul>

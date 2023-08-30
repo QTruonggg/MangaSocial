@@ -7,22 +7,15 @@ const DetailManga = () => {
     return ( 
         <>
             <Navbar/>
-            <div style={{display:'flex', width:'100%', padding:'32px'}}>
-                <div style={{width:'25%', marginRight:'16px'}}>
+            <div className="row " style={{padding:'32px'}} >
+                <div className="col-xl-3 col-lg-3 col-md-3">
                     <ByGenres/>
                 </div>
-                <div style={{width:'50%', margin:'0 16px'}}>
-                    
-                </div>
-                <div style={{width:'25%', marginLeft:'16px'}}>
-                    <ListChatUser/>
-                </div>
-            </div>
-            <div className="container">
-                <div className="row">
-                    <div className="">
+                <div className="col-xl-6 col-lg-5 col-md-5">
 
-                    </div>
+                </div>
+                <div className="col-xl-3 col-lg-4 col-md-4">
+                    <ListChatUser/>
                 </div>
             </div>
         </>

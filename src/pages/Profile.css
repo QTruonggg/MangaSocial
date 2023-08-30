@@ -11,6 +11,7 @@
     justify-items: center;
     position: absolute;
     top: 50%;
+    width: 282px;
 }
 
 .ava-pro>img{
@@ -150,4 +151,30 @@
     padding: 0;
     border: none;
     background: none;
+}
+
+.modal-content{
+    position: absolute;
+    width: 30%;
+    z-index: 1;
+    top: 40%;
+    right: 35%;
+    background: #D9D9D9;
+    padding: 32px;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+.uploadimg{
+    width: 30%;
+    margin: auto;
+    background: linear-gradient(90deg, #F6D365 0%, #FDA085 100%);
+    border-radius: 8px;
+    margin-bottom: 0;
+}
+
+.btn-close{
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
