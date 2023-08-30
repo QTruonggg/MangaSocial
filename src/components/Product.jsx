@@ -1,77 +1,44 @@
-import './css/Product.css'
-import imgpro from '../img/product.png'
-import union from '../img/Union.png'
-import mess from '../img/Message.png'
-import vector from '../img/Vector.png'
+
+
+import { useEffect, useState } from 'react'
+import axiosInstance from '../utils/axiosInstance'
+import CardManga from './CardManga'
 
 const Product = () => {
-    return ( 
-        <div className="product">
-            <div className='list-product'>
-                <div style={{width:'70%'}}>
-                    <img src={imgpro} alt="" style={{width:'100%', borderRadius:'15px'}}/>
-                    <div className='name-product'>
-                        <div className='name'>
-                            <h5>Sakamoto Days</h5>
-                            <h6>Nami Sano</h6>
-                        </div>
-                        <div>
-                            <i className="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
-                        </div>
-                    </div>
-                </div>
-                <div className='icon-btn'>
-                    <button><img src={union} alt="" /></button>
-                    <button><img src={mess} alt="" /></button>
-                    <button><img src={vector} alt="" /></button>
-                </div>
+  const [homenelo, setHomenelo] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  console.log('homenelo', homenelo.manga_link)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance('homenelo', 'GET', null, { 'Link-Full': 'https://ww6.manganelo.tv/home' });
+        setHomenelo(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        setIsLoading(false);
+      }
+    };
 
-            </div>
-            
-            <div className='list-product'>
-                <div style={{width:'70%'}}>
-                    <img src={imgpro} alt="" style={{width:'100%', borderRadius:'15px'}}/>
-                    <div className='name-product'>
-                        <div className='name'>
-                            <h5>Sakamoto Days</h5>
-                            <h6>Nami Sano</h6>
-                        </div>
-                        <div>
-                            <i className="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
-                        </div>
-                    </div>
-                </div>
-                <div className='icon-btn'>
-                    <button><img src={union} alt="" /></button>
-                    <button><img src={mess} alt="" /></button>
-                    <button><img src={vector} alt="" /></button>
-                </div>
-
-            </div>
-
-            <div className='list-product'>
-                <div style={{width:'70%'}}>
-                    <img src={imgpro} alt="" style={{width:'100%', borderRadius:'15px'}}/>
-                    <div className='name-product'>
-                        <div className='name'>
-                            <h5>Sakamoto Days</h5>
-                            <h6>Nami Sano</h6>
-                        </div>
-                        <div>
-                            <i className="fa-regular fa-heart" style={{fontSize:'24px'}}></i>
-                        </div>
-                    </div>
-                </div>
-                <div className='icon-btn'>
-                    <button><img src={union} alt="" /></button>
-                    <button><img src={mess} alt="" /></button>
-                    <button><img src={vector} alt="" /></button>
-                </div>
-
-            </div>
-            
-        </div>
-     );
+    fetchData();
+  }, []);
+  return (
+    <div className="product">
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        homenelo.manga_link?.map((poster, index) => (
+          <CardManga 
+          poster={poster.poster}
+          title={poster.title}
+          authorHome={poster.author_home}
+          urlManga={poster.link}
+          homenelo={poster}
+          />
+        ))
+      )}
+    </div>
+  );
 }
- 
+
 export default Product;

@@ -1,25 +1,42 @@
-import ByGenres from "../components/ByGenres";
-import ListChatUser from "../components/ChatUser";
 import Navbar from "../components/common/Navbar";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import union from '../img/Union.png'
+import mess from '../img/Message.png'
 
 
-const DetailManga = () => {
-    return ( 
-        <>
-            <Navbar/>
-            <div className="row " style={{padding:'32px'}} >
-                <div className="col-xl-3 col-lg-3 col-md-3">
-                    <ByGenres/>
-                </div>
-                <div className="col-xl-6 col-lg-5 col-md-5">
+function DetailManga() {
+  const location = useLocation()
+  const { poster, title, authorHome, urlManga, homenelo } = location.state || {};
 
-                </div>
-                <div className="col-xl-3 col-lg-4 col-md-4">
-                    <ListChatUser/>
-                </div>
-            </div>
-        </>
-     );
+  console.log('searchResultsObj', poster, title, authorHome, urlManga)
+  console.log('homenelo', homenelo)
+
+  const navigate = useNavigate()
+  const handleReadNow = (link) => {
+    console.log('link', link)
+  }
+  return (
+    <div>
+      <Navbar />
+      <div className="">
+        <div>
+          <img src={poster} alt="" />
+        </div>
+        <div>
+          <div>
+            <h1>{authorHome}</h1>
+            <h1>{title}</h1>
+          </div>
+          <div className='icon-btn'>
+            <button><img src={union} alt="" /></button>
+            <button onClick={() => handleReadNow(homenelo.chapter_home[0].link)}>Read now</button>
+            <button><img src={mess} alt="" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
- 
+
 export default DetailManga;
