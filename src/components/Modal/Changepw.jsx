@@ -1,22 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from '../../api/authen.api';
 import logo from '../../img/logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import axiosInstance from "../../utils/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 
 
-const ForgotPw = () => {
+const ChangePw = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
-  const [user_name, setUser_name] = useState('');
+  const [password, setPassword] = useState('');
+  const [new_password, setNew_password] = useState('');
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
 
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+        setUserLoggedIn(true);
+        const user = JSON.parse(savedUser);
+        const email = user.email;
+        setEmail(email);
+    } else {
+        setUserLoggedIn(false);
+        navigate('/signin'); 
+    }
+}, [navigate]);
 
-  const handleForgotPw = () => {
+
+  const handleChangePw = () => {
     const userData = {
       email: email,
-      user_name: user_name,
+      password: password,
+      new_password: new_password
     };
 
     setIsLoading(true);
@@ -24,11 +42,14 @@ const ForgotPw = () => {
 
     login(userData)
     
-    axiosInstance('resetpass', 'POST', userData)
+    axiosInstance('change_password', 'POST', userData)
     .then(response => {
-      console.log('Reset password request sent successfully:', response.data);
+      console.log('Rsuccessfully:', response.data);
       toast.success('Password reset successfully!');
-      toast.success('Please check your email for the new password!');
+      localStorage.removeItem('user');
+      setTimeout(() => {
+        navigate('/signin');
+      }, 2500);
     })
     .catch(error => {
       console.error('Password reset request failed:', error);
@@ -63,33 +84,25 @@ const ForgotPw = () => {
                             value={email}
                             onChange={event => setEmail(event.target.value)}/>
                         </div>
+                        <div className="form-outline mb-4">
+                            <label className="label-title">Password</label>
+                            <input type="password" name="password" className="inp" 
+                            value={password}
+                            onChange={event => setPassword(event.target.value)}/>
+                        </div>
                         <div className="form-outline ">
-                            <label className="label-title">Name</label>
-                            <input type="user_name" name="user_name" className="inp" 
-                            value={user_name}
-                            onChange={event => setUser_name(event.target.value)}/>
+                            <label className="label-title">New Password</label>
+                            <input type="password" name="new_password" className="inp" 
+                            value={new_password}
+                            onChange={event => setNew_password(event.target.value)}/>
                         </div>
 
-
-                        <div className="remember mb-5 ">
-                            <a href="/signin" className="fff"> SignIn? </a>
-                        </div> 
-
                         <div className="d-flex justify-content-center pt-5">
-                            <button type="button" className="btn-signup" onClick={handleForgotPw}>
-                            Send PassWord
+                            <button type="button" className="btn-signup" onClick={handleChangePw}>
+                            Change PassWord
                             </button>
                         </div>
 
-                        <p
-                            className="text-center mt-3"
-                            style={{ fontSize: "20px" }}
-                        >
-                            Don’t have an account?{" "}
-                            <a href="/signup" className="fw-bold a">
-                            Sign Up
-                            </a>
-                        </p>
                     </form>
                   </div>
                 </div>
@@ -103,4 +116,4 @@ const ForgotPw = () => {
   );
 };
 
-export default ForgotPw;
+export default ChangePw;

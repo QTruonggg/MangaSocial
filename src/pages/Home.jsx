@@ -8,14 +8,14 @@ const Home = () => {
     return ( 
         <div>
             <Navbar/>
-            <div style={{display:'flex', width:'100%', padding:'32px'}}>
-                <div style={{width:'25%', marginRight:'16px'}}>
+            <div className='row' style={{ padding:'32px', margin:'0'}}>
+                <div className='col-xxl-3 col-xl-3 col-lg-3' style={{ paddingRight:'16px', marginBottom:'24px'}}>
                     <ByGenres/>
                 </div>
-                <div style={{width:'50%', margin:'0 16px'}}>
+                <div className='col-xxl-6 col-xl-5 col-lg-5' style={{ padding:'0 16px'}}>
                     <Product/>
                 </div>
-                <div style={{width:'25%', marginLeft:'16px'}}>
+                <div className='col-xxl-3 col-xl-4 col-lg-4' style={{ paddingLeft:'16px'}}>
                     <ChatUser/>
                 </div>
             </div>

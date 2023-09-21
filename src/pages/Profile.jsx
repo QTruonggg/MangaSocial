@@ -25,6 +25,7 @@ const Profile = () => {
     const [name, setName] = useState(null);
     const [favoriteGenres, setFavoriteGenres] = useState([]);
     const [recentReads, setRecentReads] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const savedUser = localStorage.getItem('user');
@@ -47,9 +48,16 @@ const Profile = () => {
         const fetchFavoriteGenres = async () => {
             try {
                 const response = await axiosInstance(`api/favirote/${id_user}`);
-                    setFavoriteGenres(response.data.favoriteGenres);
+                if (response.status === 200) {
+                    setFavoriteGenres(response.data);
+                    setIsLoading(false);
+                    console.log(favoriteGenres.map((genre, index) => (
+                        genre
+                    )));
+                }
             } catch (error) {
                 console.error("Lỗi khi lấy thông tin favorite:", error);
+                setIsLoading(false);
             }
         };
         fetchFavoriteGenres();
@@ -61,9 +69,11 @@ const Profile = () => {
                 const response = await axiosInstance(`api/recent/${id_user}`);
                 if (response.status === 200) {
                     setRecentReads(response.data);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.error("Lỗi khi lấy thông tin đọc gần đây:", error);
+                setIsLoading(false);
             }
         };
         fetchRecentReads();
@@ -96,7 +106,7 @@ const Profile = () => {
 
                 if (response.status === 200) {
                     setAvatarUrl(imgBbUrl);
-                    console.log("Avatar updated successfully!");
+                    // console.log("Avatar updated successfully!");
                     toast.success('Avatar updated successfully!');
                 }
             }
@@ -130,25 +140,27 @@ const Profile = () => {
                     </div>
                     <div className="ava-pro">
                         <a type="button" onClick={() => setIsModalOpen(true)} style={{width:'100%', cursor:'pointer', display:'contents'}}>
-                            <img src={avatarUrl} alt="ava" style={{width:'100%', height:'282px', objectFit:'cover', borderRadius:'50%'}}/>
+                            <img src={avatarUrl} alt="ava" />
                         </a>
                         <h2>{(name == null) ? "No name" : name}</h2>
                         <div>
                             <button><img src={bt1} alt="" /></button>
                             <button><img src={bt2} alt="" /></button>
-                            <button><img src={bt3} alt="" /></button>
+                            <button>
+                                <a href="/changepassword">
+                                    <img src={bt3} alt="" />  
+                                </a>
+                            </button>
                         </div>
                     </div>
                 </div>
                     
                 <div className="profile-information">
                     <div className="favorite-read">
-                        <div className="favorite">
+                        {/* <div className="favorite">
                             <p>Favorite Genres</p>
                             <div className="favorite-list">
-                            {/* {favoriteGenres.map((genre, index) => (
-                                <button key={index}>{genre}</button>
-                            ))} */}
+                            
                                 <button>Horror</button>
                                 <button>Drama</button>
                                 <button>Cooking</button>
@@ -164,21 +176,23 @@ const Profile = () => {
                         <div className="read">
                             <p>Read Recently</p>
                             <div className="read-list">
-                            {recentReads.map((read, index) => (
+                            {isLoading ? (<p>Loading...</p>) :
+                            (recentReads.map((read, index) => (
                                 <button key={index}>
                                     <p>{read.title}</p> <p>{read.datetime}</p>
                                 </button>
-                            ))}
+                            )))
+                            }
                                 <button><p>Naruto: The Man called Kisame</p> <p>1m</p></button>
                                 <button><p>One Piece: The Beginning</p> <p>12m</p></button>
                                 <button><p>Slam Dunk: The 1v1</p> <p>1d</p></button>
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div className="stories-read">
-                        <div className="stories-read-list">
+                    <div className="stories-read row">
+                        <div className="stories-read-list col-md-5">
                             <img src={product} alt="" />
                             <div className="describe">
                                 <p>Naruto Episode 1</p>
@@ -197,7 +211,7 @@ const Profile = () => {
                                 <button><img src={arow} alt="" /></button>
                             </div>
                         </div>
-                        <div className="stories-read-list">
+                        <div className="stories-read-list col-md-5">
                             <img src={product} alt="" />
                             <div className="describe">
                                 <p>Naruto Episode 1</p>
@@ -216,7 +230,7 @@ const Profile = () => {
                                 <button><img src={arow} alt="" /></button>
                             </div>
                         </div>
-                        <div className="stories-read-list">
+                        <div className="stories-read-list col-md-5">
                             <img src={product} alt="" />
                             <div className="describe">
                                 <p>Naruto Episode 1</p>

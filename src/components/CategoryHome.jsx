@@ -30,11 +30,6 @@ const CategoryHome = () => {
       ) : (categories.category_home?.map((category, index) => (
         <button key={index}>{category}</button>
       )))}
-      {/* <button>All</button>
-      <button>Action</button>
-      <button>Adventure</button>
-      <button>Comedy</button>
-      <button>Cooking</button> */}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import SignIn from './components/Modal/SignIn';
 import ForgotPw from './components/Modal/Forgotpw';
 import DetailManga from './pages/DetailManga';
 import ReadManga from './pages/ReadManga';
+import ChangePw from './components/Modal/Changepw';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/signin' element={<SignIn/>}/>
         <Route path='/forgotpassword' element={<ForgotPw/>}/>
+        <Route path='/changepassword' element={<ChangePw/>}/>
 
 
         <Route path='/home' element={<Home/>}/>

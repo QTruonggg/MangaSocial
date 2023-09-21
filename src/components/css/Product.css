@@ -1,12 +1,14 @@
 .product{
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 0 16px;
 }
 
 .list-product{
     width: 48%;
+    height: 415px;
     display: flex;
     background-color: #F9C388;
     margin-bottom: 60px;
@@ -16,7 +18,7 @@
 
 .name-product{
     width: 70%;
-    height: 15%;
+    height: 20%;
     background-color: #F08D23;
     border-radius: 15px;
     position: absolute;
@@ -27,14 +29,26 @@
     padding: 0 20px;
 }
 
+.name{
+    width: 80%;
+    height: 80%;
+    overflow: hidden;
+}
+
 .name>h5{
     margin: 0;
     color: #fff;
     font-weight: bold;
+    height: 73%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .name>h6{
     margin: 0;
     color: #fff;
+    height: 27%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .icon-btn{
@@ -47,4 +61,64 @@
 .icon-btn button{
     background: none;
     border: none;
+}
+
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content:flex-end;
+    margin-bottom: 24px;
+}
+
+.pagination button{
+    margin: 0 6px;
+    padding: 4px 12px;
+    border-radius: 50%;
+    border: none;
+}
+
+.pa-active{
+    background: linear-gradient(90deg, #F6D365 0%, #FDA085 100%);
+    color: black;
+}
+
+.cmt{
+    display: grid;
+    width: 100%;
+    top: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+    background: #D9D9D9;
+    padding: 24px;
+    border-radius: 12px;
+}
+.uploadcmt{
+    width: 30%;
+    margin: auto;
+    background: linear-gradient(90deg, #F6D365 0%, #FDA085 100%);
+    border-radius: 8px;
+    margin-top: 24px;
+}
+
+.link-manga button{
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+
+@media only screen and (max-width: 700px) {
+    .product{
+        justify-content: center;
+    }
+    .list-product{
+        width: 100%;
+    }    
+}
+
+@media screen and (max-width: 1400px) and (min-width: 992px){
+    .list-product{
+        width: 100%;
+    }    
 }

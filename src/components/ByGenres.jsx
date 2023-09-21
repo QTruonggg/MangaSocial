@@ -22,7 +22,6 @@ const ByGenres = () => {
           <button>All</button>
           <button>Complete</button>
           <button>On Going</button>
-
         </div>
         <div style={{ width: '70%', height: '1px', marginBottom: '12px', backgroundColor: '#F48611' }}></div>
         <CategoryHome />
